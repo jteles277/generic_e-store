@@ -4,7 +4,7 @@ on:
   #Manually trigger workflow runs
   workflow_dispatch: 
   push:
-    branches: [ "*" ]
+    branches: [ '**' ]
   pull_request:
     branches: [ "main" ]
 jobs:
