@@ -1,0 +1,22 @@
+# Use an official OpenJDK runtime as the base image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the JAR file built by Maven to the container
+COPY ./target/demo-0.0.1-SNAPSHOT.jar ./app.jar
+
+# Expose the port that the API will run on
+EXPOSE 8080
+
+# Set environment variables for MySQL connection
+ENV DB_HOST=mysql
+ENV DB_PORT=33060
+ENV DB_NAME=mydb
+ENV DB_USER=root
+ENV DB_PASSWORD=password
+
+# Wait for the MySQL database to be ready before starting the API
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
