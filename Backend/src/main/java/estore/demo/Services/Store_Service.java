@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
  
 // Project Imports  
 import estore.demo.Models.Items;
+import estore.demo.Models.PickUpPoint; 
 import estore.demo.Rep.Item_Repository; 
 
 @Service
@@ -44,5 +45,10 @@ public class Store_Service {
         
         return item;
     }
- 
+    
+    public List<PickUpPoint> get_points() { 
+         
+        // Returns a list with all PickUp Points
+        return null;
+    }
 }

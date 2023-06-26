@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import estore.demo.Models.Items;
+import estore.demo.Models.PickUpPoint;
 import estore.demo.Models.Users;
 import estore.demo.Services.Auth_Service;
 import estore.demo.Services.Store_Service;
@@ -90,6 +91,19 @@ public class Store_Controller {
                         return ResponseEntity.badRequest().body("Error: Item Already Exists!");
                 }  
                
+        }
+
+        @GetMapping("/get_points")
+        public ResponseEntity<?> getPoints() { 
+
+                List<PickUpPoint> points = store_service.get_points();
+                
+                if(points.size() != 0){
+                        return ResponseEntity.ok(points);
+                }else{
+                        return ResponseEntity.badRequest().body("Error: No Points!");
+                } 
+
         }
  
 }
