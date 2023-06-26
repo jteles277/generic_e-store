@@ -25,8 +25,7 @@ public class Auth_Service {
         Users old_user = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if(old_user == null){
             return null;
-        }
-        System.out.println(old_user);
+        } 
         
         return old_user;
     }
