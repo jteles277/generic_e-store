@@ -1,5 +1,8 @@
 estore/demo/Services/Auth_Service.class
+estore/demo/Services/Store_Service.class
 estore/demo/Rep/User_Repository.class
+estore/demo/Models/Items.class
 estore/demo/Controllers/Store_Controller.class
 estore/demo/eStore_App.class
 estore/demo/Models/Users.class
+estore/demo/Rep/Item_Repository.class

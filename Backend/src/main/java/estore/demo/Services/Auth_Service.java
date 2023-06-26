@@ -1,12 +1,8 @@
 package estore.demo.Services;
 
 // Spring Annotations
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseCookie;
-import org.springframework.stereotype.Service;  
-
- 
-
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service;   
  
 // Project Imports 
 import estore.demo.Models.Users;
@@ -14,7 +10,6 @@ import estore.demo.Rep.User_Repository;
 
 @Service
 public class Auth_Service {
- 
      
     @Autowired
     User_Repository userRepository; 
