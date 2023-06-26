@@ -1,0 +1,5 @@
+INSERT INTO estore_items VALUES
+  ('PS4 Pro', 'Ps4 pro 1tb semi nova', '200', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.playstation.com%2Fpt-pt%2Fps4%2F&psig=AOvVaw29kgqa_BVG34SQBi1_nJbL&ust=1687885016500000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjnsuiz4f8CFQAAAAAdAAAAABAE');
+  ('PS4 Pro', 'Ps4 pro 1tb sem nova', '200', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.playstation.com%2Fpt-pt%2Fps4%2F&psig=AOvVaw29kgqa_BVG34SQBi1_nJbL&ust=1687885016500000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjnsuiz4f8CFQAAAAAdAAAAABAE');
+  ('PS4 Pro', 'Ps4 pro 1tb semi inova', '200', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.playstation.com%2Fpt-pt%2Fps4%2F&psig=AOvVaw29kgqa_BVG34SQBi1_nJbL&ust=1687885016500000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjnsuiz4f8CFQAAAAAdAAAAABAE');
+  ('PS4 Pro', 'Ps4 pro 1tb semi nova', '200', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.playstation.com%2Fpt-pt%2Fps4%2F&psig=AOvVaw29kgqa_BVG34SQBi1_nJbL&ust=1687885016500000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjnsuiz4f8CFQAAAAAdAAAAABAE');
