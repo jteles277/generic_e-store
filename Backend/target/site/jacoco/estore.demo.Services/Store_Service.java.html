@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Store_Service.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">estore.demo.Services</a> &gt; <span class="el_source">Store_Service.java</span></div><h1>Store_Service.java</h1><pre class="source lang-java linenums">package estore.demo.Services;
+
+import java.util.List;
+import java.util.Optional;
+
+// Spring Annotations
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service;   
+ 
+// Project Imports 
+import estore.demo.Models.Users;
+import estore.demo.Models.Items;
+import estore.demo.Rep.Item_Repository;
+import estore.demo.Rep.User_Repository;
+
+@Service
+<span class="fc" id="L17">public class Store_Service {</span>
+     
+    @Autowired
+    Item_Repository item_repository; 
+
+    public List&lt;Items&gt; get_catalog() { 
+         
+        // Returns a list with all Items in the catalog
+<span class="fc" id="L25">        return item_repository.findAll();</span>
+    }
+
+    public Items get_item(long item_id){
+         
+        // Returns a list with all Items in the catalog
+<span class="fc" id="L31">        Optional&lt;Items&gt; item = item_repository.findById(item_id);</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(!item.isPresent()){</span>
+<span class="fc" id="L33">            return null;</span>
+        } 
+        
+<span class="fc" id="L36">        return item.get();</span>
+    }
+
+    public Items add_item(Items item){ 
+        
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (item_repository.existsByName(item.getName())) {</span>
+<span class="fc" id="L42">            return null;</span>
+        } 
+
+<span class="fc" id="L45">        item_repository.save(item);</span>
+        
+<span class="fc" id="L47">        return item;</span>
+    }
+ 
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,5 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-demo,estore.demo.Controllers,Store_Controller,0,31,0,4,0,9,0,5,0,3
+demo,estore.demo.Controllers,Store_Controller,0,74,0,10,0,21,0,11,0,6
 demo,estore.demo,eStore_App,5,3,0,0,2,1,1,1,1,1
-demo,estore.demo.Models,Users,0,37,0,0,0,14,0,8,0,8
-demo,estore.demo.Services,Auth_Service,0,36,0,4,0,10,0,5,0,3
+demo,estore.demo.Models,Items,12,49,0,0,1,21,1,11,1,11
+demo,estore.demo.Models,Users,8,29,0,0,1,13,1,7,1,7
+demo,estore.demo.Services,Auth_Service,0,33,0,4,0,9,0,5,0,3
+demo,estore.demo.Services,Store_Service,0,38,0,4,0,10,0,6,0,4
