@@ -1,5 +1,7 @@
 package estore.demo.Models;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -11,8 +13,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
+@Table(name = "estore_users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Users implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +29,11 @@ public class User {
     @Size(max = 100)
     private String password;
 
-    public User() {
+    public Users() {
         // Empty constructor
     }
 
-    public User(String email, String password) { 
+    public Users(String email, String password) { 
         this.email = email;
         this.password = password;
     }

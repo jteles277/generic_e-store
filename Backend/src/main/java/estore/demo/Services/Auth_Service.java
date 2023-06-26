@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
  
 // Project Imports 
-import estore.demo.Models.User;
+import estore.demo.Models.Users;
 import estore.demo.Rep.User_Repository;
 
 @Service
@@ -17,14 +17,13 @@ public class Auth_Service {
  
      
     @Autowired
-    User_Repository userRepository;
-     
-    
-    public User login(User user) { 
+    User_Repository userRepository; 
+
+    public Users login(Users user) { 
         
         // Check DB for user 
-        User old_user = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if(userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()) == null){
+        Users old_user = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if(old_user == null){
             return null;
         }
         System.out.println(old_user);
@@ -32,7 +31,7 @@ public class Auth_Service {
         return old_user;
     }
 
-    public User register(User user){
+    public Users register(Users user){
 
          
         if (userRepository.existsByEmail(user.getEmail())) {

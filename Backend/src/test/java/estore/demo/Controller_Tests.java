@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import estore.demo.Models.User;
+import estore.demo.Models.Users;
 import estore.demo.Services.Auth_Service;  
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -28,11 +28,11 @@ class Controller_Tests {
     void Login_Success_Test() throws Exception {
 
         // Mock the behavior of the auth_service.login() method
-        User mockUser = new User("test@example.com", "password");
-        Mockito.when(auth_service.login(Mockito.any(User.class))).thenReturn(mockUser);
+        Users mockUser = new Users("test@example.com", "password");
+        Mockito.when(auth_service.login(Mockito.any(Users.class))).thenReturn(mockUser);
 
         // Create a test User object
-        User testUser = new User("test@example.com", "password");
+        Users testUser = new Users("test@example.com", "password");
 
         // Send a POST request to "/estore/login" with the test User object as the request body
         mockMvc.perform(MockMvcRequestBuilders.post("/estore/login")
@@ -46,10 +46,10 @@ class Controller_Tests {
     void Login_Error_Test() throws Exception {
 
         // Mock the behavior of the auth_service.login() method to return null
-        Mockito.when(auth_service.login(Mockito.any(User.class))).thenReturn(null);
+        Mockito.when(auth_service.login(Mockito.any(Users.class))).thenReturn(null);
 
         // Create a test User object
-        User testUser = new User("test@example.com", "password");
+        Users testUser = new Users("test@example.com", "password");
 
         // Send a POST request to "/estore/login" with the test User object as the request body
         mockMvc.perform(MockMvcRequestBuilders.post("/estore/login")
@@ -63,11 +63,11 @@ class Controller_Tests {
     void Register_Success_Test() throws Exception {
 
         // Mock the behavior of the auth_service.register() method
-        User mockUser = new User("test@example.com", "password");
-        Mockito.when(auth_service.register(Mockito.any(User.class))).thenReturn(mockUser);
+        Users mockUser = new Users("test@example.com", "password");
+        Mockito.when(auth_service.register(Mockito.any(Users.class))).thenReturn(mockUser);
 
         // Create a test User object
-        User testUser = new User("test@example.com", "password");
+        Users testUser = new Users("test@example.com", "password");
 
         // Send a POST request to "/estore/register" with the test User object as the request body
         mockMvc.perform(MockMvcRequestBuilders.post("/estore/register")
@@ -81,10 +81,10 @@ class Controller_Tests {
     void Register_Error_Test() throws Exception {
 		
         // Mock the behavior of the auth_service.register() method to return null
-        Mockito.when(auth_service.register(Mockito.any(User.class))).thenReturn(null);
+        Mockito.when(auth_service.register(Mockito.any(Users.class))).thenReturn(null);
 
         // Create a test User object
-        User testUser = new User("test@example.com", "password");
+        Users testUser = new Users("test@example.com", "password");
 
         // Send a POST request to "/estore/register" with the test User object as the request body
         mockMvc.perform(MockMvcRequestBuilders.post("/estore/register")

@@ -1,5 +1,5 @@
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Controllers/Store_Controller.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Services/Auth_Service.java
-/home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Models/User.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Rep/User_Repository.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/eStore_App.java
+/home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Models/Users.java

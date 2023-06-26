@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import estore.demo.Models.User;
+import estore.demo.Models.Users;
 import estore.demo.Services.Auth_Service; 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class Store_Controller {
         Auth_Service auth_service;  
 
         @PostMapping("/login")
-        public ResponseEntity<?> loginUser(@RequestBody User user) { 
+        public ResponseEntity<?> loginUser(@RequestBody Users user) { 
 
-                User db_user = auth_service.login(user);
+                Users db_user = auth_service.login(user);
                 
                 if(db_user != null){
                         return ResponseEntity.ok(db_user);
@@ -34,9 +34,9 @@ public class Store_Controller {
         }
 
         @PostMapping("/register")
-        public ResponseEntity<?> registerUser(@RequestBody User user) { 
+        public ResponseEntity<?> registerUser(@RequestBody Users user) { 
 
-                User db_user = auth_service.register(user);
+                Users db_user = auth_service.register(user);
 
                 if(db_user != null){
                         return ResponseEntity.ok(db_user);
