@@ -30,74 +30,86 @@ public class Order implements Serializable{
 
     @NotNull
     private Long pickup_id;
+ 
+    private String status;
 
 
     public Long getPickup_id() {
-<span class="fc" id="L36">        return pickup_id;</span>
+<span class="fc" id="L38">        return pickup_id;</span>
     }
 
 
     public void setPickup_id(Long pickup_id) {
-<span class="fc" id="L41">        this.pickup_id = pickup_id;</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L43">        this.pickup_id = pickup_id;</span>
+<span class="fc" id="L44">    }</span>
 
 
-<span class="fc" id="L45">    public Order() {</span>
+<span class="fc" id="L47">    public Order() {</span>
         // Empty constructor
-<span class="fc" id="L47">    }</span>
+<span class="fc" id="L49">    }</span>
 
 
-<span class="fc" id="L50">    public Order(Long item_id, Long api_id, Long user_id, Long pickup_id) {</span>
-<span class="fc" id="L51">        this.item_id = item_id;</span>
-<span class="fc" id="L52">        this.api_id = api_id;</span>
-<span class="fc" id="L53">        this.userId = user_id;</span>
-<span class="fc" id="L54">        this.pickup_id = pickup_id;</span>
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L52">    public Order(Long item_id, Long api_id, Long user_id, Long pickup_id) {</span>
+<span class="fc" id="L53">        this.item_id = item_id;</span>
+<span class="fc" id="L54">        this.api_id = api_id;</span>
+<span class="fc" id="L55">        this.userId = user_id;</span>
+<span class="fc" id="L56">        this.pickup_id = pickup_id;</span>
+<span class="fc" id="L57">    }</span>
 
-<span class="fc" id="L57">    public Order(Long item_id, Long user_id, Long pickup_id) {</span>
-<span class="fc" id="L58">        this.item_id = item_id;</span>
-<span class="fc" id="L59">        this.userId = user_id;</span>
-<span class="fc" id="L60">        this.pickup_id = pickup_id;</span>
-<span class="fc" id="L61">    }</span>
+<span class="fc" id="L59">    public Order(Long item_id, Long user_id, Long pickup_id) {</span>
+<span class="fc" id="L60">        this.item_id = item_id;</span>
+<span class="fc" id="L61">        this.userId = user_id;</span>
+<span class="fc" id="L62">        this.pickup_id = pickup_id;</span>
+<span class="fc" id="L63">    }</span>
+
+
+    public String getStatus() {
+<span class="fc" id="L67">        return status;</span>
+    }
+
+
+    public void setStatus(String status) {
+<span class="fc" id="L72">        this.status = status;</span>
+<span class="fc" id="L73">    }</span>
 
 
     public Long getId() {
-<span class="fc" id="L65">        return id;</span>
+<span class="fc" id="L77">        return id;</span>
     } 
 
     public Long getItem_id() {
-<span class="fc" id="L69">        return item_id;</span>
+<span class="fc" id="L81">        return item_id;</span>
     }
 
 
     public void setItem_id(Long item_id) {
-<span class="fc" id="L74">        this.item_id = item_id;</span>
-<span class="fc" id="L75">    }</span>
+<span class="fc" id="L86">        this.item_id = item_id;</span>
+<span class="fc" id="L87">    }</span>
 
 
     public Long getApi_id() {
-<span class="fc" id="L79">        return api_id;</span>
+<span class="fc" id="L91">        return api_id;</span>
     }
 
 
     public void setApi_id(Long api_id) {
-<span class="fc" id="L84">        this.api_id = api_id;</span>
-<span class="fc" id="L85">    }</span>
+<span class="fc" id="L96">        this.api_id = api_id;</span>
+<span class="fc" id="L97">    }</span>
 
 
     public Long getUser_id() {
-<span class="fc" id="L89">        return userId;</span>
+<span class="fc" id="L101">        return userId;</span>
     }
 
 
     public void setUser_id(Long user_id) {
-<span class="fc" id="L94">        this.userId = user_id;</span>
-<span class="fc" id="L95">    }</span>
+<span class="fc" id="L106">        this.userId = user_id;</span>
+<span class="fc" id="L107">    }</span>
 
 
     @Override
     public String toString() {
-<span class="nc" id="L100">        return &quot;Order [id=&quot; + id + &quot;, item_id=&quot; + item_id + &quot;, api_id=&quot; + api_id + &quot;, userId=&quot; + userId + &quot;, pickup_id=&quot;</span>
+<span class="nc" id="L112">        return &quot;Order [id=&quot; + id + &quot;, item_id=&quot; + item_id + &quot;, api_id=&quot; + api_id + &quot;, userId=&quot; + userId + &quot;, pickup_id=&quot;</span>
                 + pickup_id + &quot;]&quot;;
     } 
       

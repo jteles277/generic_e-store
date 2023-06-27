@@ -248,4 +248,46 @@ class Service_Tests {
         verify(apiService, times(1)).place_order(order);
         verify(orderRepository, never()).save(Mockito.any());
     }
+
+    @Test
+    void getAllStatus_Success_Test() { 
+
+        // Mock the repository response
+        List<Order> expectedOrders = new ArrayList<>();
+        expectedOrders.add(new Order(1L, 2L, 3L, 4L));
+        expectedOrders.add(new Order(5L, 6L, 7L, 8L));
+        when(orderRepository.findAll()).thenReturn(expectedOrders);
+
+        // Mock the API service response
+        String apiResponse = "{\"status\":\"Delivered\"}";
+        when(apiService.check_status(Mockito.anyLong())).thenReturn(apiResponse); 
+
+        // Call the method to be tested
+        List<Order> actualOrders = storeService.get_all_status();
+
+        // Verify the result
+        assertEquals(expectedOrders.size(), actualOrders.size());
+        for (int i = 0; i < expectedOrders.size(); i++) {
+            Order expectedOrder = expectedOrders.get(i);
+            Order actualOrder = actualOrders.get(i);
+            assertEquals(expectedOrder.getId(), actualOrder.getId());
+            assertEquals(expectedOrder.getItem_id(), actualOrder.getItem_id());
+            assertEquals(expectedOrder.getUser_id(), actualOrder.getUser_id());
+            assertEquals(expectedOrder.getPickup_id(), actualOrder.getPickup_id());
+            assertEquals("Delivered", actualOrder.getStatus());
+        }
+    }
+
+    @Test
+    void getAllStatus_NoOrders_Test() { 
+
+        // Mock the repository response
+        when(orderRepository.findAll()).thenReturn(new ArrayList<>()); 
+
+        // Call the method to be tested
+        List<Order> actualOrders = storeService.get_all_status();
+
+        // Verify the result
+        assertEquals(0, actualOrders.size());
+    }
 }

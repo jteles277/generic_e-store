@@ -119,5 +119,18 @@ public class Store_Controller {
                 }  
                
         }
+
+        @GetMapping("/get_all_status")
+        public ResponseEntity<?> getAllStatus() { 
+
+                List<Order> ordes = store_service.get_all_status();
+                
+                if(ordes.size() != 0){
+                        return ResponseEntity.ok(ordes);
+                }else{
+                        return ResponseEntity.badRequest().body("Error: No Orders!");
+                } 
+
+        }
  
 }

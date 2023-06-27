@@ -3,6 +3,8 @@ package estore.demo;
 // Test
 import org.springframework.http.MediaType;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -26,7 +29,9 @@ import estore.demo.Services.Auth_Service;
 import estore.demo.Services.Store_Service;  
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;  
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+ 
 
 @WebMvcTest(estore.demo.Controllers.Store_Controller.class)
 class Controller_Tests {
@@ -259,6 +264,47 @@ class Controller_Tests {
                 .content("{\"item_id\": \"1\", \"userId\": \"3\", \"pickup_id\": \"4\"}"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest()) 
                 .andExpect(MockMvcResultMatchers.content().string("Error: Something went wrong placing order!"));
+ 
+    }
+
+    @Test
+    void getAllStatus_Success_Test() throws Exception {
+        // Mock the service response
+        List<Order> expectedOrders = new ArrayList<>();
+        expectedOrders.add(new Order(1L, 2L, 3L, 4L));
+        expectedOrders.add(new Order(5L, 6L, 7L, 8L));
+        Mockito.when(store_service.get_all_status()).thenReturn(expectedOrders);
+
+        // Perform the request
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/estore/get_all_status")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk()) 
+                .andReturn();
+
+        // Verify the response
+        String responseBody = result.getResponse().getContentAsString();
+        List<Order> actualOrders = new ObjectMapper().readValue(responseBody, new TypeReference<>() {});
+        assertEquals(expectedOrders.size(), actualOrders.size());
+        for (int i = 0; i < expectedOrders.size(); i++) {
+            assertEquals(expectedOrders.get(i).getApi_id(), actualOrders.get(i).getApi_id());
+            assertEquals(expectedOrders.get(i).getItem_id(), actualOrders.get(i).getItem_id());
+            assertEquals(expectedOrders.get(i).getPickup_id(), actualOrders.get(i).getPickup_id());
+            assertEquals(expectedOrders.get(i).getUser_id(), actualOrders.get(i).getUser_id());
+            assertEquals(expectedOrders.get(i).getStatus(), actualOrders.get(i).getStatus());
+        }
+    }
+
+    @Test
+    void getAllStatus_NoOrders_Test() throws Exception {
+        
+        // Mock the service response
+        Mockito.when(store_service.get_all_status()).thenReturn(new ArrayList<>());
+
+        // Perform the request
+        mockMvc.perform(MockMvcRequestBuilders.get("/estore/get_all_status")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.content().string("Error: No Orders!")); 
  
     }
  
