@@ -14,8 +14,7 @@ export const UserProvider = ({ children }) => {
 
   const getId = () => {
     return user ? user.id : 'Mister Guest';
-    };
-
+    }; 
     
   return (
     <UserContext.Provider value={{ user, updateUser, getUserEmail , getId  }}>
