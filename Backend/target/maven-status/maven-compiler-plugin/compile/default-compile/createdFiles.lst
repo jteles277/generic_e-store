@@ -1,8 +1,12 @@
-estore/demo/Services/Auth_Service.class
 estore/demo/Services/Store_Service.class
-estore/demo/Rep/User_Repository.class
-estore/demo/Models/Items.class
 estore/demo/Controllers/Store_Controller.class
 estore/demo/eStore_App.class
+estore/demo/API/Picky_API_Access.class
+estore/demo/Models/PickUpPoint.class
+estore/demo/Services/Auth_Service.class
+estore/demo/Rep/User_Repository.class
+estore/demo/Rep/Order_Repository.class
+estore/demo/Models/Order.class
+estore/demo/Models/Items.class
 estore/demo/Models/Users.class
 estore/demo/Rep/Item_Repository.class

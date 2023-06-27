@@ -1,8 +1,12 @@
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Controllers/Store_Controller.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Services/Auth_Service.java
+/home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Models/PickUpPoint.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Rep/Item_Repository.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Models/Items.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Rep/User_Repository.java
+/home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Models/Order.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/eStore_App.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Models/Users.java
+/home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Rep/Order_Repository.java
 /home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/Services/Store_Service.java
+/home/teles/Uni/TQS/generic_e-store/Backend/src/main/java/estore/demo/API/Picky_API_Access.java

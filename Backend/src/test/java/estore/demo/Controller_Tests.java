@@ -18,6 +18,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import estore.demo.Models.Items;
+import estore.demo.Models.Order;
+import estore.demo.Models.PickUpPoint;
 // Project
 import estore.demo.Models.Users;
 import estore.demo.Services.Auth_Service;  
@@ -193,7 +195,73 @@ class Controller_Tests {
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().string("Error: Item Already Exists!"));
     }
-	
+
+    @Test
+    void getPoints_PointsExist_Test() throws Exception {
+        // Mock the store service to return a list of pick-up points
+        List<PickUpPoint> points = new ArrayList<>();
+        points.add(new PickUpPoint("1", "Point 1", "Address 1"));
+        points.add(new PickUpPoint("2", "Point 2", "Address 2"));
+        Mockito.when(store_service.get_points()).thenReturn(points);
+
+        // Perform GET request
+        mockMvc.perform(MockMvcRequestBuilders.get("/estore/get_points"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(points.size()));
+
+        // Verify the service method was called
+        Mockito.verify(store_service, Mockito.times(1)).get_points();
+    }
+
+    @Test
+    void getPoints_NoPoints_Test() throws Exception {
+        // Mock the store service to return an empty list of pick-up points
+        List<PickUpPoint> points = new ArrayList<>();
+        Mockito.when(store_service.get_points()).thenReturn(points);
+
+        // Perform GET request
+        mockMvc.perform(MockMvcRequestBuilders.get("/estore/get_points"))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()) 
+                .andExpect(MockMvcResultMatchers.content().string("Error: No Points!"));
+
+        // Verify the service method was called
+        Mockito.verify(store_service, Mockito.times(1)).get_points();
+    }
+    
+    @Test
+    void placeOrder_Success_Test() throws Exception { 
+
+        Order order = new Order(1L, 2L, 3L, 4L);
+
+        Mockito.when(store_service.place_order(Mockito.any(Order.class))).thenReturn(order); 
+
+        // Perform POST request
+        mockMvc.perform(MockMvcRequestBuilders.post("/estore/place_order")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"item_id\": \"1\", \"user_id\": \"3\", \"pickup_id\": \"4\"}"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.item_id").value(order.getItem_id()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.api_id").value(order.getApi_id()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(order.getUser_id()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pickup_id").value(order.getPickup_id())); 
+    } 
+
+    @Test
+    void placeOrder_Error_Test() throws Exception {
+        Order order = new Order(1L, 3L, 4L);
+        Mockito.when(store_service.place_order(order)).thenReturn(null);
+
+        // Perform POST request
+        mockMvc.perform(MockMvcRequestBuilders.post("/estore/place_order")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"item_id\": \"1\", \"userId\": \"3\", \"pickup_id\": \"4\"}"))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()) 
+                .andExpect(MockMvcResultMatchers.content().string("Error: Something went wrong placing order!"));
+ 
+    }
+ 
 	// Utility method to convert an object to its JSON representation
     private static String asJsonString(final Object obj) {
         try {

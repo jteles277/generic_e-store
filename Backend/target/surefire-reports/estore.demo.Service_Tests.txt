@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: estore.demo.Service_Tests
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.413 s - in estore.demo.Service_Tests
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.489 s - in estore.demo.Service_Tests

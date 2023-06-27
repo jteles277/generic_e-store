@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import estore.demo.Models.Items;
+import estore.demo.Models.Order;
 import estore.demo.Models.PickUpPoint;
 import estore.demo.Models.Users;
 import estore.demo.Services.Auth_Service;
@@ -104,6 +105,19 @@ public class Store_Controller {
                         return ResponseEntity.badRequest().body("Error: No Points!");
                 } 
 
+        }
+
+        @PostMapping("/place_order")
+        public ResponseEntity<?> placeOrder (@RequestBody Order order) { 
+
+                Order db_order = store_service.place_order(order);   
+
+                if(db_order != null){
+                        return ResponseEntity.ok(db_order);
+                }else{
+                        return ResponseEntity.badRequest().body("Error: Something went wrong placing order!");
+                }  
+               
         }
  
 }
