@@ -255,15 +255,15 @@ class Service_Tests {
         // Mock the repository response
         List<Order> expectedOrders = new ArrayList<>();
         expectedOrders.add(new Order(1L, 2L, 3L, 4L));
-        expectedOrders.add(new Order(5L, 6L, 7L, 8L));
-        when(orderRepository.findAll()).thenReturn(expectedOrders);
+        expectedOrders.add(new Order(5L, 6L, 3L, 8L));
+        when(orderRepository.findByUserId(3L)).thenReturn(expectedOrders);
 
         // Mock the API service response
         String apiResponse = "{\"status\":\"Delivered\"}";
         when(apiService.check_status(Mockito.anyLong())).thenReturn(apiResponse); 
 
         // Call the method to be tested
-        List<Order> actualOrders = storeService.get_all_status();
+        List<Order> actualOrders = storeService.get_all_status(3L);
 
         // Verify the result
         assertEquals(expectedOrders.size(), actualOrders.size());
@@ -285,7 +285,7 @@ class Service_Tests {
         when(orderRepository.findAll()).thenReturn(new ArrayList<>()); 
 
         // Call the method to be tested
-        List<Order> actualOrders = storeService.get_all_status();
+        List<Order> actualOrders = storeService.get_all_status(1L);
 
         // Verify the result
         assertEquals(0, actualOrders.size());

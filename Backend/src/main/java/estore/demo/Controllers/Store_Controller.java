@@ -121,9 +121,9 @@ public class Store_Controller {
         }
 
         @GetMapping("/get_all_status")
-        public ResponseEntity<?> getAllStatus() { 
+        public ResponseEntity<?> getAllStatus(@RequestParam Long userId) { 
 
-                List<Order> ordes = store_service.get_all_status();
+                List<Order> ordes = store_service.get_all_status(userId);
                 
                 if(ordes.size() != 0){
                         return ResponseEntity.ok(ordes);

@@ -121,9 +121,9 @@ import org.springframework.web.bind.annotation.RequestBody;
         }
 
         @GetMapping(&quot;/get_all_status&quot;)
-        public ResponseEntity&lt;?&gt; getAllStatus() { 
+        public ResponseEntity&lt;?&gt; getAllStatus(@RequestParam Long userId) { 
 
-<span class="fc" id="L126">                List&lt;Order&gt; ordes = store_service.get_all_status();</span>
+<span class="fc" id="L126">                List&lt;Order&gt; ordes = store_service.get_all_status(userId);</span>
                 
 <span class="fc bfc" id="L128" title="All 2 branches covered.">                if(ordes.size() != 0){</span>
 <span class="fc" id="L129">                        return ResponseEntity.ok(ordes);</span>

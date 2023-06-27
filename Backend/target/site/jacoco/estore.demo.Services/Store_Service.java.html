@@ -105,9 +105,9 @@ import org.json.JSONObject;
 <span class="fc" id="L105">        return order;</span>
     }
 
-    public List&lt;Order&gt; get_all_status() { 
+    public List&lt;Order&gt; get_all_status(Long userId) { 
         
-<span class="fc" id="L110">        List&lt;Order&gt; orders = order_repository.findAll();</span>
+<span class="fc" id="L110">        List&lt;Order&gt; orders = order_repository.findByUserId(userId);</span>
 
 <span class="fc bfc" id="L112" title="All 2 branches covered.">        for (Order order : orders) { </span>
         

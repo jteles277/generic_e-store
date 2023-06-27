@@ -105,9 +105,9 @@ public class Store_Service {
         return order;
     }
 
-    public List<Order> get_all_status() { 
+    public List<Order> get_all_status(Long userId) { 
         
-        List<Order> orders = order_repository.findAll();
+        List<Order> orders = order_repository.findByUserId(userId);
 
         for (Order order : orders) { 
         
