@@ -33,7 +33,8 @@ public class Picky_API_Access {
     public String check_status(Long api_id){
 
         //String url = host + "/check_status";
-        Long id = api_id;
+        Long id = api_id; 
+        
         return "{\"point\":{\"name\": \"Papelaria Almeida\",\"location\": \"rua do pardal, Aveiro\"}, \"status\":\"On the way\"}";
         
     }
