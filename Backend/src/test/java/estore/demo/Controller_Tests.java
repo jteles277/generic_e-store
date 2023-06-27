@@ -269,15 +269,17 @@ class Controller_Tests {
 
     @Test
     void getAllStatus_Success_Test() throws Exception {
+
+        Long user_id = 3L;
         // Mock the service response
         List<Order> expectedOrders = new ArrayList<>();
-        expectedOrders.add(new Order(1L, 2L, 3L, 4L));
-        expectedOrders.add(new Order(5L, 6L, 7L, 8L));
-        Mockito.when(store_service.get_all_status()).thenReturn(expectedOrders);
+        expectedOrders.add(new Order(1L, 2L, user_id, 4L));
+        expectedOrders.add(new Order(5L, 6L, user_id, 8L));
+        Mockito.when(store_service.get_all_status(3L)).thenReturn(expectedOrders);
 
         // Perform the request
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/estore/get_all_status")
-                .contentType(MediaType.APPLICATION_JSON))
+                .param("userId", user_id.toString())) 
                 .andExpect(MockMvcResultMatchers.status().isOk()) 
                 .andReturn();
 
@@ -296,13 +298,13 @@ class Controller_Tests {
 
     @Test
     void getAllStatus_NoOrders_Test() throws Exception {
-        
+        Long user_id = 3L;
         // Mock the service response
-        Mockito.when(store_service.get_all_status()).thenReturn(new ArrayList<>());
+        Mockito.when(store_service.get_all_status(user_id)).thenReturn(new ArrayList<>());
 
         // Perform the request
         mockMvc.perform(MockMvcRequestBuilders.get("/estore/get_all_status")
-                .contentType(MediaType.APPLICATION_JSON))
+                .param("userId", user_id.toString())) 
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().string("Error: No Orders!")); 
  
