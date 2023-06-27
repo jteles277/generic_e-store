@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Picky_API_Access.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">estore.demo.API</a> &gt; <span class="el_source">Picky_API_Access.java</span></div><h1>Picky_API_Access.java</h1><pre class="source lang-java linenums">package estore.demo.API;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import estore.demo.Models.Order;
+import estore.demo.Models.PickUpPoint;
+
+@Service
+<span class="nc" id="L11">public class Picky_API_Access {</span>
+    
+
+    //private String host = &quot;http://localhost:6869/picky&quot;; 
+    
+    public String get_points(){
+
+        //String url = host + &quot;/get_points&quot;;
+
+<span class="nc" id="L20">        String a= &quot;[{\&quot;id\&quot;:\&quot;1\&quot;,\&quot;name\&quot;: \&quot;Padaria do seu Zé\&quot;,\&quot;location\&quot;: \&quot;rua do passal, Recardaes, Agueda, Aveiro\&quot;},{\&quot;id\&quot;:\&quot;2\&quot;,\&quot;name\&quot;: \&quot;Papelaria Almeida\&quot;,\&quot;location\&quot;: \&quot;rua do pardal, Aveiro\&quot;},{\&quot;id\&quot;:\&quot;3\&quot;,\&quot;name\&quot;: \&quot;CTT Center\&quot;,\&quot;location\&quot;: \&quot;rua de Mordor, Porto\&quot;},{\&quot;id\&quot;:\&quot;4\&quot;,\&quot;name\&quot;: \&quot;Boca de fumo 2B\&quot;,\&quot;location\&quot;: \&quot;avenida de Hogwarts, Viseu\&quot;}]&quot;;</span>
+        
+<span class="nc" id="L22">        return a;</span>
+    }
+
+    public String place_order(Order order){
+
+        //String url = host + &quot;/place_order&quot;;
+
+<span class="nc" id="L29">        return &quot;0&quot;;</span>
+        
+    }
+
+    public String check_status(){
+
+        //String url = host + &quot;/check_status&quot;;
+
+<span class="nc" id="L37">        return &quot;{\&quot;point\&quot;:{\&quot;name\&quot;: \&quot;Papelaria Almeida\&quot;,\&quot;location\&quot;: \&quot;rua do pardal, Aveiro\&quot;}, \&quot;status\&quot;:\&quot;On the way\&quot;}&quot;;</span>
+        
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

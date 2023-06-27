@@ -1,8 +1,12 @@
 package estore.demo;
 
+import estore.demo.API.Picky_API_Access;
 import estore.demo.Models.Items;
+import estore.demo.Models.Order;
+import estore.demo.Models.PickUpPoint;
 import estore.demo.Models.Users;
 import estore.demo.Rep.Item_Repository;
+import estore.demo.Rep.Order_Repository;
 import estore.demo.Rep.User_Repository;
 import estore.demo.Services.Auth_Service;
 import estore.demo.Services.Store_Service;
@@ -11,11 +15,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.Mock.Strictness;
 import org.mockito.junit.jupiter.MockitoExtension; 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -33,6 +40,10 @@ class Service_Tests {
 
     @Mock(strictness = Strictness.LENIENT)
     private Item_Repository itemRepository;
+    @Mock(strictness = Strictness.LENIENT)
+    private Order_Repository orderRepository;
+    @Mock(strictness = Strictness.LENIENT)
+    private Picky_API_Access apiService;
 
     @InjectMocks
     private Store_Service storeService; 
@@ -159,5 +170,82 @@ class Service_Tests {
         verify(itemRepository, times(1)).existsByName(item.getName());
         verify(itemRepository, never()).save(any());
         assertEquals(null, result);
+    }
+
+    @Test
+    void getPoints_Success_Test() {
+
+        // Mock dependencies  
+        String response = "[{\"id\":\"1\",\"name\":\"Point A\",\"location\":\"Location A\"},{\"id\":\"2\",\"name\":\"Point B\",\"location\":\"Location B\"}]";
+        when(apiService.get_points()).thenReturn(response);
+
+        // Perform the test
+        List<PickUpPoint> expectedPoints = new ArrayList<>();
+        expectedPoints.add(new PickUpPoint("1", "Point A", "Location A"));
+        expectedPoints.add(new PickUpPoint("2", "Point B", "Location B"));
+        List<PickUpPoint> actualPoints = storeService.get_points();
+
+        // Verify the results
+        assertNotNull(actualPoints);
+        assertEquals(expectedPoints.size(), actualPoints.size());
+        for (int i = 0; i < expectedPoints.size(); i++) {
+            assertEquals(expectedPoints.get(i).getName(), actualPoints.get(i).getName());
+        }
+
+        // Verify the dependency method was called
+        verify(apiService, times(1)).get_points();
+    }
+
+    @Test
+    void getPoints_EmptyList_Test() {
+        // Mock dependencies 
+        String response = "[]";
+        when(apiService.get_points()).thenReturn(response);
+
+        // Perform the test
+        List<PickUpPoint> actualPoints = storeService.get_points();
+
+        // Verify the result
+        assertNull(actualPoints);
+
+        // Verify the dependency method was called
+        verify(apiService, times(1)).get_points();
+    }
+
+    @Test
+    void placeOrder_Success_Test() {
+        // Mock dependencies 
+        Order order = new Order(1L, 2L, 3L, 4L);
+        String apiResponse = "5678";
+        when(apiService.place_order(order)).thenReturn(apiResponse);
+        when(orderRepository.save(order)).thenReturn(order);
+
+        // Perform the test
+        Order actualOrder = storeService.place_order(order);
+
+        // Verify the result
+        assertNotNull(actualOrder);
+        assertEquals(apiResponse, actualOrder.getApi_id().toString());
+
+        // Verify the dependency methods were called
+        verify(apiService, times(1)).place_order(order);
+        verify(orderRepository, times(1)).save(order);
+    }
+
+    @Test
+    void placeOrder_Error_Test() {
+        // Mock dependencies 
+        Order order = new Order(1L, 2L, 3L, 4L);
+        when(apiService.place_order(order)).thenReturn(null);
+
+        // Perform the test
+        Order actualOrder = storeService.place_order(order);
+
+        // Verify the result
+        assertNull(actualOrder);
+
+        // Verify the dependency method was called
+        verify(apiService, times(1)).place_order(order);
+        verify(orderRepository, never()).save(Mockito.any());
     }
 }
