@@ -104,6 +104,30 @@ import org.json.JSONObject;
         // return the new order   
 <span class="fc" id="L105">        return order;</span>
     }
+
+    public List&lt;Order&gt; get_all_status() { 
+        
+<span class="fc" id="L110">        List&lt;Order&gt; orders = order_repository.findAll();</span>
+
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        for (Order order : orders) { </span>
+        
+            // Returns a list with all PickUp Points
+<span class="fc" id="L115">            String response = api_service.check_status(order.getApi_id()); </span>
+
+            // get parts from response till reaching the address
+<span class="fc" id="L118">            JSONObject obj = (JSONObject) new JSONObject(response); </span>
+
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">            if (obj.length() == 0) {</span>
+<span class="nc" id="L121">                return null;</span>
+            }   
+ 
+<span class="fc" id="L124">            String status = (String) obj.get(&quot;status&quot;);  </span>
+             
+<span class="fc" id="L126">            order.setStatus(status);</span>
+<span class="fc" id="L127">        } </span>
+
+<span class="fc" id="L129">        return orders;</span>
+    }
  
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

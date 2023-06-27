@@ -119,6 +119,19 @@ import org.springframework.web.bind.annotation.RequestBody;
                 }  
                
         }
+
+        @GetMapping(&quot;/get_all_status&quot;)
+        public ResponseEntity&lt;?&gt; getAllStatus() { 
+
+<span class="fc" id="L126">                List&lt;Order&gt; ordes = store_service.get_all_status();</span>
+                
+<span class="fc bfc" id="L128" title="All 2 branches covered.">                if(ordes.size() != 0){</span>
+<span class="fc" id="L129">                        return ResponseEntity.ok(ordes);</span>
+                }else{
+<span class="fc" id="L131">                        return ResponseEntity.badRequest().body(&quot;Error: No Orders!&quot;);</span>
+                } 
+
+        }
  
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

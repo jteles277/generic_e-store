@@ -104,5 +104,29 @@ public class Store_Service {
         // return the new order   
         return order;
     }
+
+    public List<Order> get_all_status() { 
+        
+        List<Order> orders = order_repository.findAll();
+
+        for (Order order : orders) { 
+        
+            // Returns a list with all PickUp Points
+            String response = api_service.check_status(order.getApi_id()); 
+
+            // get parts from response till reaching the address
+            JSONObject obj = (JSONObject) new JSONObject(response); 
+
+            if (obj.length() == 0) {
+                return null;
+            }   
+ 
+            String status = (String) obj.get("status");  
+             
+            order.setStatus(status);
+        } 
+
+        return orders;
+    }
  
 }

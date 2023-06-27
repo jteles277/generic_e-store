@@ -30,7 +30,7 @@ public class Picky_API_Access {
         
     }
 
-    public String check_status(){
+    public String check_status(Long api_id){
 
         //String url = host + "/check_status";
 

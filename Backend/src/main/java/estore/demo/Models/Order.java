@@ -30,6 +30,8 @@ public class Order implements Serializable{
 
     @NotNull
     private Long pickup_id;
+ 
+    private String status;
 
 
     public Long getPickup_id() {
@@ -58,6 +60,16 @@ public class Order implements Serializable{
         this.item_id = item_id;
         this.userId = user_id;
         this.pickup_id = pickup_id;
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 
