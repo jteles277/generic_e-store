@@ -186,35 +186,36 @@ function Store_Page() {
         </Navbar>
 
         <h2 style={{margin:"3%",alignItems: "center", justifyContent: "center"}}> Store Catalog</h2>
-        <Container> 
-   
-             
-   
-            <Row xs={1} md={4}>
+
+        <Container fluid> 
+        <Row style={{margin:"10%"}}>
+          {
+            items.map(item => {
+              return (
+                <Col sm={4} key={item.id}>
+                  <div className='holder'>
+                    <Card style={{ width: '18rem', margin:"2%", marginRight:"1px" }}>
+                      <Card.Img variant="top" src={item.image_url} />
+                      <Card.Body> 
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Text>
+                          {item.description}
+                        </Card.Text> 
+                        <Card.Text style={{color:"green"}}>{item.price} $</Card.Text>
+                        
+                        </Card.Body>
+                        <Button variant="secondary" style={{backgroundColor:"Purple", borderColor:"Purple"}} onClick={() => buy_item(item)}>Buy</Button>
+                            
+                    </Card>
+                  </div>
+                </Col>
+              )
+            })
+          }
+        </Row>
+      </Container>
+
         
-    
-                <div style={{margin:"5%",alignItems: "center", justifyContent: "center"}}>{items.map((item) => (
-            
-                    <Col> 
-                    
-                        <Card key={item.id} style={{ width: '18rem', margin:"2%", marginRight:"1px" }}>
-                            <Card.Img variant="top" src={item.image_url} />
-                            <Card.Body>
-                                <Card.Title>{item.name}</Card.Title>
-                                <Card.Text>
-                                    {item.description}
-                                </Card.Text>
-                                <Card.Text style={{color:"green"}}>{item.price} $</Card.Text>
-                                <Button variant="secondary" style={{backgroundColor:"Purple", borderColor:"Purple"}} onClick={() => buy_item(item)}>Buy</Button>
-                            </Card.Body>
-                        </Card> 
-                    </Col>
-               
-                 ))}
-                </div>
-      
-            </Row>
-        </Container>
       </> 
     );
   }
