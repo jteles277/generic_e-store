@@ -19,17 +19,23 @@ function Main() {
       if (email!="" && password!=""){
         event.preventDefault();
         const data = { email: email, password: password };
+
+
         axios.post('http://localhost:6868/estore/login', data)
           .then(response => {
             setEmail('');
             setPassword('');
             console.log(response.data);
-            updateUser(response.data);
-            sessionStorage.setItem('user', JSON.stringify(response.data));
-            navigate('/store')
+            if (response.data != "Error: Account not found!"){
+              updateUser(response.data);
+              sessionStorage.setItem('user', JSON.stringify(response.data));
+              navigate('/store')
+            }else{
+              alert("Error: Account not found!")
+            }
           })
           .catch(error => {
-            alert(error);
+            alert("Error: Account not found!");
           });
       }
     };
