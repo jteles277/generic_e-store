@@ -15,20 +15,23 @@ function Main() {
     const navigate = useNavigate();
   
     const handleSubmit = (event) => {
-      event.preventDefault();
-      const data = { email: email, password: password };
-      axios.post('http://localhost:6868/estore/login', data)
-        .then(response => {
-          setEmail('');
-          setPassword('');
-          console.log(response.data);
-          updateUser(response.data);
-          sessionStorage.setItem('user', JSON.stringify(response.data));
-          navigate('/store')
-        })
-        .catch(error => {
-          alert(error);
-        });
+
+      if (email!="" && password!=""){
+        event.preventDefault();
+        const data = { email: email, password: password };
+        axios.post('http://localhost:6868/estore/login', data)
+          .then(response => {
+            setEmail('');
+            setPassword('');
+            console.log(response.data);
+            updateUser(response.data);
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+            navigate('/store')
+          })
+          .catch(error => {
+            alert(error);
+          });
+      }
     };
   
     return (
