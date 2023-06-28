@@ -36,14 +36,13 @@ function Main() {
   
     return (
       <>
-        <Container className='d-flex flex-column align-items-center justify-content-center text-center '>
-          <h1>Login</h1>
+        <Container className='d-flex flex-column align-items-center justify-content-center text-center ' style={{marginTop:"10%"}}>
+          <h1 style={{marginBottom:"2%"}}>E<t style={{color:"Purple"}}>.</t>Store Login</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+              <Form.Text className="text-muted"> 
               </Form.Text>
             </Form.Group>
   
@@ -52,15 +51,14 @@ function Main() {
               <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
   
-            <Button variant="primary" type="submit" >
-              Submit
+            <Button style={{marginBottom:"2%", backgroundColor:"Purple", borderColor:"Purple" }} variant="primary" type="submit" >
+              Log in
             </Button>
-          </Form>
-          <Button variant="primary" className='mt-3' >
-            <a href="/register" style={{textDecoration: "none", color: "white"}}>
+          </Form> 
+            <a href="/register" style={{textDecoration: "none", color: "Purple",  textDecoration: "underline"}}>
               Register
             </a>
-          </Button>
+          
         </Container>
       </>
     );
