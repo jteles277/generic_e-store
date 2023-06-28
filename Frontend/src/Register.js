@@ -19,14 +19,18 @@ function Register() {
       axios.post('http://localhost:6868/estore/register', data)
         .then(response => {
           console.log(response);
-          alert("Registered with Success!!");
-          setEmail('');
-          setPassword('');  
-          setName('');
-          navigate('/')
+          if (response.data != "Error: Email is already in use!"){
+            alert("Registered with Success!!");
+            setEmail('');
+            setPassword('');  
+            setName('');
+            navigate('/')
+          }else
+          {alert("Error: Email is already in use!")}
+          
         })
         .catch(error => {
-          alert(error);
+          alert("Error: Email is already in use!");
           });
     }
   };
