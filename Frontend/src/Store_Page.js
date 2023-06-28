@@ -14,6 +14,10 @@ import LogoutButton from "./LogoutButton";
 import { useNavigate } from 'react-router-dom';
 
 function Store_Page() {
+
+    
+
+
     const [items, setItems] = useState([]);
     const [points, setPoints] = useState([]);
 
@@ -60,7 +64,7 @@ function Store_Page() {
       };
 
     const buy_item = (item) => {
-         
+        console.log(item)
         setItem(item)
         handleShow();
     };
@@ -83,7 +87,64 @@ function Store_Page() {
     };
   
     
-  
+    const colCount = 4;
+    let rowCount = Math.floor(items.length / colCount) + 1
+
+    //Index is needed to keep track of the current element that we are one.
+    let index = 0
+
+    //This is the driver function for building the grid system.
+    const buildGrid = () => {
+        return (
+            renderRows()
+        )
+    }
+
+    //Returns For example, we can have a row with 2 columns inside it.
+    const renderRows = () => {
+        let rows = []
+        
+        for(let row = 0; row < rowCount; row++) {
+            rows.push(
+                <Row className='Row'>
+                    {
+                        renderCols()
+                    }
+                </Row>
+            )
+        }
+        
+        return rows
+    }
+
+    //Returns an array of columns with the children inside.
+    const renderCols = () => {
+        let cols = []
+        
+        //If you want to add more bootstrap breakpoints you can pass them as props here.
+        for(let col = 0; col < colCount; col++) {
+            if(index < items.length) {
+                cols.push(
+                    <Col className='Col'>
+                        <Card style={{ width: '18rem', margin:"2%" }}>
+                            <Card.Img variant="top" src={items[index].image_url} />
+                            <Card.Body>
+                            <Card.Title>{items[index].name}</Card.Title>
+                            <Card.Text>
+                                {items[index].description}
+                            </Card.Text>
+                                <Card.Text style={{color:"green"}}>{items[index].price} $</Card.Text>
+                                <Button variant="secondary" style={{backgroundColor:"Purple", borderColor:"Purple"}} onClick={() => buy_item(items[index])}>Buy</Button>
+                            </Card.Body>
+                        </Card> 
+                    </Col>
+                )
+                index++
+            }
+        }
+        
+        return cols
+    }
     return (
       <>
 
@@ -105,37 +166,46 @@ function Store_Page() {
             </Modal.Footer>
         </Modal>
 
-        <Navbar bg="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="/store">E Store </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+        <Navbar expand="lg" className="bg-body-tertiary">
+        <Container fluid>
+        <Navbar.Brand style={{marginLeft:"3%"}}  href="/store">E<t style={{color:"Purple"}}>.</t>Store </Navbar.Brand> 
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+            <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{ maxHeight: '100px' }}
+                navbarScroll
+            >
                 <Nav.Link href="/store">Home</Nav.Link> 
-                <Nav.Link href="/my-items">My Orders</Nav.Link> 
-                <LogoutButton/>
-              </Nav>
+                <Nav.Link  href="/my-items">My Orders</Nav.Link> 
+                 
+            </Nav>
+            <LogoutButton/> 
             </Navbar.Collapse>
-          </Container>
-        </Navbar> 
+        </Container>
+        </Navbar>
+
         <h2 style={{margin:"3%",alignItems: "center", justifyContent: "center"}}> Store Catalog</h2>
-        <Container>
-            <Row>
+        <Container> 
+   
+             
+   
+            <Row xs={1} md={4}>
         
     
                 <div style={{margin:"5%",alignItems: "center", justifyContent: "center"}}>{items.map((item) => (
             
-                    <Col  > 
+                    <Col> 
                     
-                        <Card style={{ width: '18rem', margin:"2%" }}>
+                        <Card key={item.id} style={{ width: '18rem', margin:"2%", marginRight:"1px" }}>
                             <Card.Img variant="top" src={item.image_url} />
                             <Card.Body>
-                            <Card.Title>{item.name}</Card.Title>
-                            <Card.Text>
-                                {item.description}
-                            </Card.Text>
+                                <Card.Title>{item.name}</Card.Title>
+                                <Card.Text>
+                                    {item.description}
+                                </Card.Text>
                                 <Card.Text style={{color:"green"}}>{item.price} $</Card.Text>
-                                <Button variant="secondary" style={{backgroundColor:"green"}} onClick={() => buy_item(item)}>Buy</Button>
+                                <Button variant="secondary" style={{backgroundColor:"Purple", borderColor:"Purple"}} onClick={() => buy_item(item)}>Buy</Button>
                             </Card.Body>
                         </Card> 
                     </Col>

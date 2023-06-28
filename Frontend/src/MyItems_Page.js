@@ -77,19 +77,24 @@ function MyItems_Page(){
 
        
 
-        <Navbar bg="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="/store">E Store </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+        <Navbar expand="lg" className="bg-body-tertiary">
+        <Container fluid>
+        <Navbar.Brand style={{marginLeft:"3%"}}  href="/store">E<t style={{color:"Purple"}}>.</t>Store </Navbar.Brand> 
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+            <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{ maxHeight: '100px' }}
+                navbarScroll
+            >
                 <Nav.Link href="/store">Home</Nav.Link> 
-                <Nav.Link href="/my-items">My Orders</Nav.Link> 
-                <LogoutButton/>
-              </Nav>
+                <Nav.Link  href="/my-items">My Orders</Nav.Link> 
+                 
+            </Nav>
+            <LogoutButton/> 
             </Navbar.Collapse>
-          </Container>
-        </Navbar> 
+        </Container>
+        </Navbar>
 
         <h2 style={{margin:"3%",alignItems: "center", justifyContent: "center"}}> My Orders</h2>
 

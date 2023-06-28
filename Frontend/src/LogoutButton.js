@@ -13,7 +13,7 @@ function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <button style={{marginRight:"3%"}}  onClick={handleLogout}>Logout</button>
   );
 }
 
