@@ -10,19 +10,22 @@ function Register() {
   const [name, setName] = useState('');
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = { email: email, password: password};
-    axios.post('http://localhost:6868/estore/register', data)
-      .then(response => {
-        console.log(response);
-        alert("Success");
-        setEmail('');
-        setPassword('');  
-        setName('');
-      })
-      .catch(error => {
-        alert(error);
-        });
+
+    if (email!="" && password!=""){
+      event.preventDefault();
+      const data = { email: email, password: password};
+      axios.post('http://localhost:6868/estore/register', data)
+        .then(response => {
+          console.log(response);
+          alert("Success");
+          setEmail('');
+          setPassword('');  
+          setName('');
+        })
+        .catch(error => {
+          alert(error);
+          });
+    }
   };
 
   return (

@@ -1,37 +1,115 @@
-import logo from './logo.svg';
-import './App.css';
-  
+import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+import axios from "axios";
+import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Nav from "react-bootstrap/Nav";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form"; 
+import LogoutButton from "./LogoutButton";
+import { useNavigate } from 'react-router-dom';
+import Order from "./Order";
 
-import React from 'react'; 
 
-export default class MyItems_Page extends React.Component { 
+function MyItems_Page(){ 
  
-    constructor(props) { 
-      super(props);  
-  
-      this.state={
-         
-      }
-       
-   
-    }
-   
-  
-    render(){
+    const [orders, setOrders] = useState([]);
+    const [items, setItems] = useState([]);
+    const [points, setPoints] = useState([]);
 
+    const [sitem, setItem] = useState([]);
+    const [point, setPoint] = useState([]);
+ 
+    const storedUser = sessionStorage.getItem("user");
+    const user = storedUser ? JSON.parse(storedUser) : null; 
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const navigate = useNavigate();
     
-        return ( 
-
-            <>    
-
-                
-                <div style={{}}>
-                    my_items
-                </div>  
+    useEffect(() => {
+        if (!!user) {
+            fetch_Items();
+            fetch_Points();
+        }
+      }, []);
+  
+    const fetch_Items = () => {
+      axios
+        .get(`http://localhost:6868/estore/get_all_status?userId=` + user.id)
+        .then((response) => {
+            setOrders(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        }); 
  
+    };
+
+    const fetch_Points = () => {
+        axios
+          .get(`http://localhost:6868/estore/get_points`)
+          .then((response) => {
+            setPoints(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+    const buy_item = (item) => {
+         
+        setItem(item)
+        handleShow();
+    }; 
+  
+    
+  
+    return (
+      <>
+
+       
+
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand href="/store">E Store </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="/store">Home</Nav.Link> 
+                <Nav.Link href="/my-items">My Orders</Nav.Link> 
+                <LogoutButton/>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar> 
+
+        <h2 style={{margin:"3%",alignItems: "center", justifyContent: "center"}}> My Orders</h2>
+
+        <Container>
+            <Row>
+        
+    
+                <div style={{margin:"5%",alignItems: "center", justifyContent: "center"}}>{orders.map((order) => (
             
-            </> 
-        ) 
-    } 
+                    <Col>  
+                       <Order order={order}></Order>
+                    </Col>
+               
+                 ))}
+                </div>
+      
+            </Row>
+        </Container>
+      </> 
+    );
        
 }
+export default MyItems_Page;

@@ -19,13 +19,9 @@ function Store_Page() {
 
     const [sitem, setItem] = useState([]);
     const [point, setPoint] = useState([]);
-
-    const [selectedMeeting, setSelectedMeeting] = useState(null);
+ 
     const storedUser = sessionStorage.getItem("user");
-    const user = storedUser ? JSON.parse(storedUser) : null;
-    const [editingMeeting, setEditingMeeting] = useState(null);
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState(""); 
+    const user = storedUser ? JSON.parse(storedUser) : null; 
 
     const [show, setShow] = useState(false);
 
@@ -122,6 +118,7 @@ function Store_Page() {
             </Navbar.Collapse>
           </Container>
         </Navbar> 
+        <h2 style={{margin:"3%",alignItems: "center", justifyContent: "center"}}> Store Catalog</h2>
         <Container>
             <Row>
         
@@ -137,8 +134,8 @@ function Store_Page() {
                             <Card.Text>
                                 {item.description}
                             </Card.Text>
-                                <Card.Text>{item.price} $</Card.Text>
-                                <Button variant="primary" onClick={() => buy_item(item)}>Buy</Button>
+                                <Card.Text style={{color:"green"}}>{item.price} $</Card.Text>
+                                <Button variant="secondary" style={{backgroundColor:"green"}} onClick={() => buy_item(item)}>Buy</Button>
                             </Card.Body>
                         </Card> 
                     </Col>
